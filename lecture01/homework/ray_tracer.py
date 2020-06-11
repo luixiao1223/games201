@@ -36,8 +36,7 @@ half_height = half_width * aspect
 
 origin = ti.Vector(lookfrom)
 lower_left_corner = ti.Vector(lookfrom - (half_width * u + half_height * v + w) * dist_to_focus)
-horizontal = ti.Vector(u * 2 * half_width) * dist_to_focus
-vertical = ti.Vector(v * 2 * half_height) * dist_to_focus
+
 
 
 SIZEN = 20
@@ -216,6 +215,8 @@ def color(o, d):
 
 @ti.kernel
 def paint():
+    horizontal = ti.Vector(u * 2 * half_width) * dist_to_focus
+    vertical = ti.Vector(v * 2 * half_height) * dist_to_focus
     for i, j in pixels:
         col = ti.Vector([0.0, 0.0, 0.0])
         # 每像素点采样次数
